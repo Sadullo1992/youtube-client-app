@@ -1,0 +1,33 @@
+.header {
+  background-color: #e0e0e0;
+  padding: 15px 0;
+  &__inner {
+    padding-left: 250px;
+    display: grid;
+    grid-template-columns: auto auto;
+    justify-content: space-between;
+  }
+  mat-toolbar {
+    height: auto;
+    padding: 0;
+    gap: 10px;
+  }
+
+  .btn--setting {
+    height: 24px;
+    width: 24px;
+    border-radius: 4px;
+    background-color: #2196f3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .login__text {
+    color: #4f4f4f;
+    font-size: 12px;
+    line-height: 14.06px;
+  }
+  .user-info {
+    cursor: pointer;
+  }
+}

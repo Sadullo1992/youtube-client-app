@@ -1,0 +1,20 @@
+<header class="header">
+  <div class="container">
+    <div class="header__inner">
+      <mat-toolbar color="accent" class="wrapper">
+        <img src="../../../assets/images/logo.png" alt="logo" class="logo" />
+        <app-header-search></app-header-search>
+        <button (click)="onToggleSortBlock()" class="btn btn--setting">
+          <img src="../../../assets/images/setting.png" alt="setting" />
+        </button>
+      </mat-toolbar>
+      <mat-toolbar class="user-info" color="accent" [matMenuTriggerFor]="menu">
+        <p class="login__text">Your Name</p>
+        <img src="../../../assets/images/user-photo.png" alt="user-photo" />
+      </mat-toolbar>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="logout()">Logout</button>
+      </mat-menu>
+    </div>
+  </div>
+</header>

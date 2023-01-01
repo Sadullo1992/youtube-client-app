@@ -1,0 +1,11 @@
+<form (submit)="onSearch()" class="header__search">
+  <input
+    type="text"
+    placeholder="What are you want to find out?"
+    [(ngModel)]="searchValue"
+    name="searchValue"
+  />
+  <button type="submit" mat-flat-button color="primary" class="btn btn--search">
+    search
+  </button>
+</form>

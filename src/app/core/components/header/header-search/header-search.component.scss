@@ -1,0 +1,17 @@
+input {
+  height: 24px;
+  width: 396px;
+  padding: 5px;
+  font-size: 12px;
+  line-height: 14.06px;
+  background-color: #efefef;
+  border: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  &:focus {
+    outline: 0;
+  }
+}
+.btn--search {
+  height: 24px;
+  border-radius: 0 4px 4px 0;
+}

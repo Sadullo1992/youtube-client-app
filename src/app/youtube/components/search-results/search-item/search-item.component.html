@@ -1,0 +1,45 @@
+<mat-card class="search-item" appSelectBorderColor [color]="color">
+  <img
+    mat-card-image
+    src="{{ item?.snippet?.thumbnails?.medium?.url }}"
+    alt="caption-1"
+  />
+  <mat-card-actions class="search-item__statistics">
+    <div class="search-item__statistics__item">
+      <img src="../../../../assets/images/viewed.svg" alt="viewed" />
+      <span>{{ item?.statistics?.viewCount }}</span>
+    </div>
+    <div class="search-item__statistics__item">
+      <img src="../../../../assets/images/liked.svg" alt="liked" />
+      <span>{{ item?.statistics?.likeCount }}</span>
+    </div>
+    <div class="search-item__statistics__item">
+      <img src="../../../../assets/images/dislike.svg" alt="dislike" />
+      <span>{{ item?.statistics?.dislikeCount }}</span>
+    </div>
+    <div class="search-item__statistics__item">
+      <img src="../../../../assets/images/comments.svg" alt="comments" />
+      <span>{{ item?.statistics?.commentCount }}</span>
+    </div>
+  </mat-card-actions>
+  <div class="search-item--container">
+    <mat-card-title>
+      <h2 class="search-item__title">
+        {{ item?.snippet?.title | titleShorten : 35 }}
+      </h2>
+    </mat-card-title>
+    <mat-card-actions>
+      <button
+        (click)="goToDetailInfoPage()"
+        mat-flat-button
+        color="primary"
+        class="btn btn--more"
+      >
+        more...
+      </button>
+    </mat-card-actions>
+  </div>
+  <mat-card-footer>
+    <div></div>
+  </mat-card-footer>
+</mat-card>

@@ -1,0 +1,35 @@
+.login {
+  padding: 45px;
+}
+.form__container {
+  form {
+    margin: 0 auto;
+    width: 350px;
+    padding: 28px 20px;
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    .form__title {
+      font-size: 18px;
+      line-height: 1.17;
+      margin-bottom: 27px;
+    }
+    mat-form-field {
+      width: 100%;
+      margin-bottom: 22px;
+    }
+    mat-label,
+    input {
+      font-size: 12px;
+      color: #000;
+    }
+    .btn--form {
+      height: 30px;
+      width: 124px;
+      margin-left: 180px;
+      transition: all 0.3s linear;
+      &:hover {
+        background-color: #85B9FF;
+      }
+    }
+  }
+}

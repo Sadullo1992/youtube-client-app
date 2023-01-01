@@ -1,0 +1,46 @@
+<div class="info-card" appSelectBoxShadowColor [color]="color">
+  <button
+    class="btn__go-back"
+    (click)="goBack()"
+    appSelectBackgroundColor
+    appSetBoxshadowOnHover
+    [color]="color"
+  >
+    <img src="../../../../assets/images/go-back.svg" alt="go-back" />
+  </button>
+  <img
+    src="{{ item?.snippet?.thumbnails?.maxres?.url }}"
+    alt="info-card-photo"
+    class="info-card__photo"
+  />
+  <div class="info-card__body" appSelectBorderColor [color]="color">
+    <p class="info-card__date">
+      {{ item?.snippet?.publishedAt | date : "fullDate" }}
+    </p>
+    <h2 class="info-card__title">
+      {{ item?.snippet?.title | titleShorten : 45 }}
+    </h2>
+    <h4 class="info-card__desc__title">Description:</h4>
+    <p class="info-card__desc__text">
+      {{ item?.snippet?.description | titleShorten : 735 }}
+    </p>
+    <div class="info-card__statistics">
+      <div class="info-card__statistics__item">
+        <img src="../../../../assets/images/viewed.svg" alt="viewed" />
+        <span>{{ item?.statistics?.viewCount }}</span>
+      </div>
+      <div class="info-card__statistics__item">
+        <img src="../../../../assets/images/liked.svg" alt="liked" />
+        <span>{{ item?.statistics?.likeCount }}</span>
+      </div>
+      <div class="info-card__statistics__item">
+        <img src="../../../../assets/images/dislike.svg" alt="dislike" />
+        <span>{{ item?.statistics?.dislikeCount }}</span>
+      </div>
+      <div class="info-card__statistics__item">
+        <img src="../../../../assets/images/comments.svg" alt="comments" />
+        <span>{{ item?.statistics?.commentCount }}</span>
+      </div>
+    </div>
+  </div>
+</div>

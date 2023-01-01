@@ -1,0 +1,39 @@
+.sort-block {
+  background-color: #e0e0e0;
+  padding: 18px 0;
+  &__inner {
+    display: flex;
+    align-items: center;
+    padding-left: 250px;
+     p {
+      font-size: 12px;
+      line-height: 14.06px;
+      color: #929292;
+    }
+    label {
+      font-size: 12px;
+      line-height: 14.06px;
+      color: #4f4f4f;
+      margin: 0 10px 0 2px;
+    }
+    .btn__sort__type {
+      border: 0;
+      padding: 0;
+      background-color: transparent;
+      font-size: 12px;
+      color: #2196f3;
+      text-decoration: underline;
+      margin: 0 10px;
+      cursor: pointer;
+      &--active {
+        text-decoration: none;
+      }
+    }
+    input {
+      height: 14px;
+      border: 0;
+      outline: 0;
+      border-radius: 0;
+    }
+  }
+}

@@ -1,0 +1,22 @@
+.not-found {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 150px);
+  width: 100%;
+  &__content {
+    width: 360px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    img {
+      height: 60px;
+    }
+    h4 {
+      font-size: 18px;
+      line-height: 1.17;
+      color: #828282;
+    }
+  }
+}

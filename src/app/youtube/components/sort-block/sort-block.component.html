@@ -1,0 +1,56 @@
+<section class="sort-block">
+  <div class="container">
+    <div class="sort-block__inner">
+      <p>Sorting by:</p>
+      <button
+        (click)="switchSortByDate()"
+        class="btn__sort__type"
+        [class.btn__sort__type--active]="isSortByDate"
+      >
+        date
+      </button>
+      <button
+        (click)="switchSortByView()"
+        class="btn__sort__type"
+        [class.btn__sort__type--active]="isSortByView"
+      >
+        count of views
+      </button>
+      <button
+        (click)="switchSortByWord()"
+        class="btn__sort__type"
+        [class.btn__sort__type--active]="isSortByWord"
+      >
+        by word or sentance
+      </button>
+      <input
+        *ngIf="isSortByWord; else elseTemplate"
+        type="text"
+        ngModel
+        [value]="sortTypeData.value"
+        (ngModelChange)="onInputKeyWord($event)"
+        name="inputValue"
+      />
+      <ng-template #elseTemplate>
+        <input
+          [checked]="isSortByDate"
+          type="radio"
+          id="increasing"
+          name="sort_by"
+          value="increasing"
+          (input)="selectIncrease()"
+        />
+        <label for="increasing">increasing</label>
+        <input
+          [checked]="isSortByView"
+          type="radio"
+          id="decreasing"
+          name="sort_by"
+          value="decreasing"
+          (input)="selectDecrease()"
+        />
+        <label for="decreasing">decreasing</label>
+      </ng-template>
+    </div>
+  </div>
+</section>

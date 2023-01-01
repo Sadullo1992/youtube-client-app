@@ -1,0 +1,7 @@
+<app-sort-block
+  *ngIf="isShowSortBlock"
+  (sort)="onSort($event)"
+></app-sort-block>
+<app-search-results
+  [sortTypeData]="sortTypeData"
+></app-search-results>
