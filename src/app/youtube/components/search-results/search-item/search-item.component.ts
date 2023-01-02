@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Colors } from 'src/app/youtube/models/colors-enum.model';
 import { SearchItem } from 'src/app/youtube/models/search-item.model';
+import { ShareColorService } from 'src/app/youtube/services/share-color.service';
 
 @Component({
   selector: 'app-search-item',
@@ -14,7 +16,7 @@ export class SearchItemComponent implements OnInit {
 
   publishedDate: string | undefined;
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private shareColorService: ShareColorService) {}
 
   ngOnInit(): void {
     this.publishedDate = this.item?.snippet?.publishedAt;
@@ -28,13 +30,13 @@ export class SearchItemComponent implements OnInit {
       const before1MonthTime = new Date().setMonth(new Date().getMonth() - 1);
       const before7DaysTime = new Date().setDate(new Date().getDate() - 7);
       if (publishedTime < before6MonthsTime) {
-        this.color = 'rgb(235, 87, 87)';
+        this.color = Colors.red;
       } else if (publishedTime < before1MonthTime) {
-        this.color = 'rgb(242, 201, 76)';
+        this.color = Colors.yellow;
       } else if (publishedTime < before7DaysTime) {
-        this.color = 'rgb(39, 174, 96)';
+        this.color = Colors.green;
       } else {
-        this.color = 'rgba(33, 150, 243)';
+        this.color = Colors.blue;
       }
     } else {
       this.color = 'transparent';
@@ -42,6 +44,7 @@ export class SearchItemComponent implements OnInit {
   }
 
   goToDetailInfoPage(): void {
-    this.router.navigate(['detail', this.item?.id, { color: this.color }]);
+    this.shareColorService.setColor(this.color);
+    this.router.navigate(['youtube', this.item?.id]);
   }
 }

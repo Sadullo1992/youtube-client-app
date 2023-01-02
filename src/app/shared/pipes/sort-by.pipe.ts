@@ -13,18 +13,18 @@ export class SortByPipe implements PipeTransform {
     if (sortStatusData.type === 'date') {
       if (sortStatusData.value === 'increasing') {
         // eslint-disable-next-line max-len
-        return searchItems.sort((a: SearchItem, b: SearchItem) => this.increaseDate(a.snippet.publishedAt, b.snippet.publishedAt));
+        return searchItems.sort((a: SearchItem, b: SearchItem) => this.sortDate(a.snippet.publishedAt, b.snippet.publishedAt));
       }
       // eslint-disable-next-line max-len
-      return searchItems.sort((a: SearchItem, b: SearchItem) => this.decreaseDate(a.snippet.publishedAt, b.snippet.publishedAt));
+      return searchItems.sort((a: SearchItem, b: SearchItem) => this.sortDate(b.snippet.publishedAt, a.snippet.publishedAt));
     }
     if (sortStatusData.type === 'view') {
       if (sortStatusData.value === 'increasing') {
         // eslint-disable-next-line max-len
-        return searchItems.sort((a: SearchItem, b: SearchItem) => this.increaseView(a.statistics.viewCount, b.statistics.viewCount));
+        return searchItems.sort((a: SearchItem, b: SearchItem) => this.sortView(a.statistics.viewCount, b.statistics.viewCount));
       }
       // eslint-disable-next-line max-len
-      return searchItems.sort((a: SearchItem, b: SearchItem) => this.decreaseView(a.statistics.viewCount, b.statistics.viewCount));
+      return searchItems.sort((a: SearchItem, b: SearchItem) => this.sortView(b.statistics.viewCount, a.statistics.viewCount));
     }
     return searchItems.filter((item) => this.searchItemCallback(item, sortStatusData.value));
   }
@@ -37,19 +37,11 @@ export class SortByPipe implements PipeTransform {
     return tag.toLowerCase().includes(word.toLowerCase());
   }
 
-  private increaseDate(x: string, y: string) {
+  private sortDate(x: string, y: string) {
     return new Date(y).getTime() - new Date(x).getTime();
   }
 
-  private decreaseDate(x: string, y: string) {
-    return new Date(x).getTime() - new Date(y).getTime();
-  }
-
-  private increaseView(x: string, y: string) {
+  private sortView(x: string, y: string) {
     return Number(x) - Number(y);
-  }
-
-  private decreaseView(x: string, y: string) {
-    return Number(y) - Number(x);
   }
 }

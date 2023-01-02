@@ -34,12 +34,16 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    // this.getSearchValue();
     this.showResults();
+  }
+
+  private getSearchValue(): void {
     this.subscription1$ = this.transferSearchDataService
       .getData()
       .subscribe((value) => {
         this.searchValue = value;
-        // this.showResults();
+        this.showResults();
       });
     this.subscriptions.push(this.subscription1$);
   }
@@ -51,6 +55,16 @@ export class SearchResultsComponent implements OnInit, OnDestroy {
         this.searchItems = data.items;
       });
     this.subscriptions.push(this.subscription2$);
+    // if (this.searchValue) {
+    //   this.subscription2$ = this.apiService
+    //     .getSearchResponse()
+    //     .subscribe((data) => {
+    //       this.searchItems = data.items;
+    //     });
+    //   this.subscriptions.push(this.subscription2$);
+    // } else {
+    //   this.searchItems = [];
+    // }
   }
 
   ngOnDestroy(): void {

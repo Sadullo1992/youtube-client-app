@@ -1,8 +1,11 @@
 <div class="container">
   <div class="search-results">
-    <app-search-item
-      *ngFor="let item of searchItems | sortBy : sortTypeData"
-      [item]="item"
-    ></app-search-item>
+    <ng-container *ngIf="searchItems.length > 0; else noData">
+      <app-search-item
+        *ngFor="let item of searchItems | sortBy : sortTypeData"
+        [item]="item"
+      ></app-search-item>
+    </ng-container>
+    <ng-template #noData>No Data</ng-template>
   </div>
 </div>
