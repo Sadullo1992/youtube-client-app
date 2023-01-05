@@ -11,7 +11,9 @@ export class HeaderSearchComponent {
 
   constructor(private transferSearchDataService: TransferSearchDataService) {}
 
-  onSearch(): void {
-    this.transferSearchDataService.shareData(this.searchValue);
+  onSearch(value: string): void {
+    if (value.trim().length > 2) {
+      this.transferSearchDataService.shareData(value);
+    }
   }
 }

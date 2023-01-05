@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { TransferDataService } from '../../services/transfer-data.service';
 
@@ -8,14 +9,24 @@ import { TransferDataService } from '../../services/transfer-data.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy {
   shouldShow = false;
+
+  isLogin = false;
+
+  subscription: Subscription | undefined;
 
   constructor(
     private transferDataService: TransferDataService,
     private authService: AuthService,
     private router: Router,
   ) {}
+
+  ngOnInit(): void {
+    this.subscription = this.authService.getLoginState().subscribe((isLogin) => {
+      this.isLogin = isLogin;
+    });
+  }
 
   onToggleSortBlock(): void {
     this.shouldShow = !this.shouldShow;
@@ -25,5 +36,13 @@ export class HeaderComponent {
   logout(): void {
     this.authService.logout();
     this.router.navigateByUrl('/auth/login');
+  }
+
+  login(): void {
+    this.router.navigateByUrl('/auth/login');
+  }
+
+  ngOnDestroy(): void {
+    this.subscription?.unsubscribe();
   }
 }

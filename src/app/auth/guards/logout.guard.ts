@@ -9,7 +9,7 @@ export class LogoutGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    if (!this.authService.loggedIn()) {
+    if (!this.authService.isLoggedIn()) {
       return true;
     }
     this.router.navigateByUrl('/youtube');

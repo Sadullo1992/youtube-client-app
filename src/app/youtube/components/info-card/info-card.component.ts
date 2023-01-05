@@ -2,7 +2,7 @@ import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { SearchItem } from '../../models/search-item.model';
+import { VideoItem } from '../../models/video-item.model';
 import { ApiService } from '../../services/api.service';
 import { ShareColorService } from '../../services/share-color.service';
 
@@ -13,7 +13,7 @@ import { ShareColorService } from '../../services/share-color.service';
 })
 
 export class InfoCardComponent implements OnInit, OnDestroy {
-  item: SearchItem | undefined;
+  item: VideoItem | undefined;
 
   color = 'transparent';
 
@@ -50,9 +50,9 @@ export class InfoCardComponent implements OnInit, OnDestroy {
 
   private getDetail(id: string): void {
     this.subscription2$ = this.apiService
-      .getSearchResponse()
+      .getVideosById(id)
       .subscribe((data) => {
-        this.item = data.items.find((item) => item.id === id);
+        [this.item] = data.items;
       });
     this.subscriptions.push(this.subscription2$);
   }

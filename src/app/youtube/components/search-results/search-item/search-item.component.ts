@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Colors } from 'src/app/youtube/models/colors-enum.model';
-import { SearchItem } from 'src/app/youtube/models/search-item.model';
+import { VideoItem } from 'src/app/youtube/models/video-item.model';
 import { ShareColorService } from 'src/app/youtube/services/share-color.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { ShareColorService } from 'src/app/youtube/services/share-color.service'
   styleUrls: ['./search-item.component.scss'],
 })
 export class SearchItemComponent implements OnInit {
-  @Input() item: SearchItem | null = null;
+  @Input() item: VideoItem | null = null;
 
   color = 'tranparent';
 

@@ -1,23 +1,27 @@
-export interface SearchItem {
+export interface VideoItem {
   etag: string;
-  id: Id;
+  id: string;
   kind: string;
   snippet: Snippet;
-}
-
-interface Id {
-  kind: string;
-  videoId: string;
+  statistics: Statistics;
 }
 
 interface Snippet {
+  categoryId: string;
   channelId: string;
   channelTitle: string;
+  defaultAudioLanguage: string;
   description: string;
   liveBroadcastContent: string;
+  localized: Localized;
   publishedAt: string;
-  publishedTime: string;
+  tags: string[];
   thumbnails: Thumbnails<TumbInfo>;
+  title: string;
+}
+
+interface Localized {
+  description: string;
   title: string;
 }
 
@@ -33,4 +37,12 @@ interface TumbInfo {
   height: number;
   width: number;
   url: string;
+}
+
+interface Statistics {
+  commentCount: string;
+  dislikeCount: string;
+  favoriteCount: string;
+  likeCount: string;
+  viewCount: string;
 }

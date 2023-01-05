@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { debounceTime, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,6 @@ export class TransferSearchDataService {
   }
 
   getData(): Observable<string> {
-    return this.subject.asObservable();
+    return this.subject.asObservable().pipe(debounceTime(2000));
   }
 }

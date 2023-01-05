@@ -13,7 +13,10 @@
         <img src="../../../assets/images/user-photo.png" alt="user-photo" />
       </mat-toolbar>
       <mat-menu #menu="matMenu">
-        <button mat-menu-item (click)="logout()">Logout</button>
+        <button *ngIf="isLogin; else elseTemplate" mat-menu-item (click)="logout()">Logout</button>
+        <ng-template #elseTemplate>
+          <button mat-menu-item (click)="login()">Login</button>
+        </ng-template>
       </mat-menu>
     </div>
   </div>
