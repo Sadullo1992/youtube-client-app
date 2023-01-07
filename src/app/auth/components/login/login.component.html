@@ -1,8 +1,7 @@
-<section class="login">
-  <div class="form__container">
+<div class="form__container">
     <form (ngSubmit)="login()" [formGroup]="loginForm">
       <h3 class="form__title">Login</h3>
-      <mat-form-field appearance="fill">
+      <mat-form-field>
         <mat-label>Login</mat-label>
         <input matInput type="email" placeholder="Enter your login email" formControlName="loginEmail"/>
         <mat-error *ngIf="loginEmail.errors?.['required']">Please enter a login email</mat-error>
@@ -28,4 +27,3 @@
       </button>
     </form>
   </div>
-</section>

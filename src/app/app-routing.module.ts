@@ -5,9 +5,8 @@ import { LogoutGuard } from './auth/guards/logout.guard';
 import { NotFoundPageComponent } from './core/pages/not-found-page/not-found-page.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'youtube', pathMatch: 'full' },
   {
-    path: 'youtube',
+    path: '',
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
     canActivate: [AuthGuard],
   },

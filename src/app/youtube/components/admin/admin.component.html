@@ -1,0 +1,47 @@
+<div class="form__container">
+    <form (ngSubmit)="createCard()" [formGroup]="createCardForm">
+      <h3 class="form__title">Create new card</h3>
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput type="text" formControlName="title"/>
+        <mat-error *ngIf="title.errors?.['required']">Please enter a title</mat-error>
+        <mat-error *ngIf="title.errors?.['minlength']">The title is too short</mat-error>
+        <mat-error *ngIf="title.errors?.['maxlength']">The title is too long</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <input matInput type="text" formControlName="description"/>
+        <mat-error *ngIf="description.errors?.['maxlength']">The description is too long</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Image link</mat-label>
+        <input matInput type="text" formControlName="imageLink"/>
+        <mat-error *ngIf="imageLink.errors?.['required']">Please enter a link to the image</mat-error>
+        <mat-error *ngIf="imageLink.errors?.['pattern']">The image link is invalid</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Link video</mat-label>
+        <input matInput type="text" formControlName="linkVideo"/>
+        <mat-error *ngIf="linkVideo.errors?.['required']">Please enter a link to the video</mat-error>
+        <mat-error *ngIf="linkVideo.errors?.['pattern']">The video link is invalid</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Choose creation date</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="date">
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        <mat-error *ngIf="date.errors?.['required']">Please enter a creation date</mat-error>
+        <mat-error *ngIf="date.errors?.['futureDate']">The date is invalid</mat-error>
+      </mat-form-field>
+
+      <button
+        type="submit"
+        mat-flat-button
+        color="primary"
+        class="btn btn--form"
+        [disabled]="!createCardForm.valid"
+      >
+        Create card
+      </button>
+    </form>
+  </div>

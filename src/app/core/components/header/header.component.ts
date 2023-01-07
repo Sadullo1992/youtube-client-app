@@ -38,6 +38,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/auth/login');
   }
 
+  goToAdmin(): void {
+    this.router.navigateByUrl('/admin');
+  }
+
+  goToYoutube(): void {
+    this.router.navigateByUrl('/youtube');
+  }
+
   login(): void {
     this.router.navigateByUrl('/auth/login');
   }

@@ -35,6 +35,16 @@ $youtube-client-app-theme: mat.define-light-theme(
 @include mat.all-component-themes($youtube-client-app-theme);
 
 /* You can add global styles to this file, and also import other style files */
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-size: 14px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -62,12 +72,46 @@ $youtube-client-app-theme: mat.define-light-theme(
   }
 }
 
-html,
-body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  font-size: 14px;
+.form__container {
+  form {
+    margin: 0 auto;
+    width: 350px;
+    padding: 28px 20px;
+    background-color: #F2F2F2;
+    border-radius: 5px;
+    .form__title {
+      font-size: 18px;
+      line-height: 1.17;
+      margin-bottom: 27px;
+    }
+    mat-form-field {
+      width: 100%;
+      margin-bottom: 22px;
+    }
+    mat-label,
+    mat-error,
+    input {
+      font-size: 12px;
+    }
+    mat-icon {
+      font-size: 16px;
+    }
+    button[mat-icon-button]{
+      height: 36px;
+      width: 36px;
+      padding-left: 4px;
+    }
+    .btn--form {
+      height: 30px;
+      width: 124px;
+      margin-left: 180px;
+      transition: all 0.3s linear;
+      &:hover {
+        background-color: #85B9FF;
+      }
+      &[disabled] {
+        box-shadow: none;
+      }
+    }
+  }
 }
