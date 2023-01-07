@@ -18,9 +18,17 @@
       margin-bottom: 22px;
     }
     mat-label,
+    mat-error,
     input {
       font-size: 12px;
-      color: #000;
+    }
+    mat-icon {
+      font-size: 16px;
+    }
+    button[mat-icon-button]{
+      height: 36px;
+      width: 36px;
+      padding-left: 4px;
     }
     .btn--form {
       height: 30px;
@@ -29,6 +37,9 @@
       transition: all 0.3s linear;
       &:hover {
         background-color: #85B9FF;
+      }
+      &[disabled] {
+        box-shadow: none;
       }
     }
   }

@@ -1,20 +1,28 @@
 <section class="login">
   <div class="form__container">
-    <form (submit)="login()">
+    <form (ngSubmit)="login()" [formGroup]="loginForm">
       <h3 class="form__title">Login</h3>
       <mat-form-field appearance="fill">
         <mat-label>Login</mat-label>
-        <input matInput type="text" required />
+        <input matInput type="email" placeholder="Enter your login email" formControlName="loginEmail"/>
+        <mat-error *ngIf="loginEmail.errors?.['required']">Please enter a login email</mat-error>
+        <mat-error *ngIf="loginEmail.errors?.['email']">The login email is invalid</mat-error>
       </mat-form-field>
       <mat-form-field>
         <mat-label>Password</mat-label>
-        <input matInput type="password" required />
+        <input matInput [type]="hide ? 'password' : 'text'" formControlName="password"/>
+        <button type="button" mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password.errors?.['required']">Please enter a password</mat-error>
+        <mat-error *ngIf="password.errors?.['passwordStrength']">Your password isn't strong enough</mat-error>
       </mat-form-field>
       <button
         type="submit"
         mat-flat-button
         color="primary"
         class="btn btn--form"
+        [disabled]="!loginForm.valid"
       >
         Login
       </button>
