@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatCardModule } from '@angular/material/card';
@@ -19,6 +21,9 @@ import { SortBlockComponent } from './components/sort-block/sort-block.component
 import { YoutubeRoutingModule } from './youtube-routing.module';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
 import { AdminComponent } from './components/admin/admin.component';
+
+import { youtubeReducer } from '../redux/reducers/youtube.reducers';
+import { YoutubeEffects } from '../redux/effects/youtube.effects';
 
 @NgModule({
   declarations: [
@@ -43,6 +48,8 @@ import { AdminComponent } from './components/admin/admin.component';
     MatInputModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    StoreModule.forFeature('youtube', youtubeReducer),
+    EffectsModule.forFeature([YoutubeEffects]),
   ],
   exports: [],
 })

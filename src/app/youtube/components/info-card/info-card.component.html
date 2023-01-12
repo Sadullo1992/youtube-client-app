@@ -1,4 +1,4 @@
-<div class="info-card" appSelectBoxShadowColor [color]="color">
+<div class="info-card" *ngIf="(item$ | async) as item" appSelectBoxShadowColor [color]="color">
   <button
     class="btn__go-back"
     (click)="goBack()"
@@ -10,7 +10,6 @@
   </button>
   <img
     src="{{ item?.snippet?.thumbnails?.maxres?.url }}"
-    alt="info-card-photo"
     class="info-card__photo"
   />
   <div class="info-card__body" appSelectBorderColor [color]="color">

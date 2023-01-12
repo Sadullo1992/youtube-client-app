@@ -1,10 +1,11 @@
 import { Location } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { Observable, Subscription } from 'rxjs';
 import { VideoItem } from '../../models/video-item.model';
-import { ApiService } from '../../services/api.service';
 import { ShareColorService } from '../../services/share-color.service';
+import * as YoutubeSelects from '../../../redux/selectors/youtube.selectors';
 
 @Component({
   selector: 'app-info-card',
@@ -13,55 +14,50 @@ import { ShareColorService } from '../../services/share-color.service';
 })
 
 export class InfoCardComponent implements OnInit, OnDestroy {
-  item: VideoItem | undefined;
+  item$!: Observable<VideoItem | undefined>;
 
   color = 'transparent';
 
-  subscription1$: Subscription | undefined;
+  subscription1$!: Subscription;
 
-  subscription2$: Subscription | undefined;
-
-  subscription3$: Subscription | undefined;
+  subscription2$!: Subscription;
 
   subscriptions: Subscription[] = [];
 
   publishedDate: string | undefined;
 
+  searchVideos$ = this.store.select(YoutubeSelects.selectSearchVideos);
+
   constructor(
     private route: ActivatedRoute,
-    private apiService: ApiService,
     private location: Location,
     private shareColorService: ShareColorService,
+    private store: Store,
   ) {}
 
   ngOnInit(): void {
     this.getColor();
-    this.getDetailInit();
+    this.getVideoInit();
   }
 
   goBack(): void {
     this.location.back();
   }
 
-  private getDetailInit(): void {
-    this.subscription1$ = this.route.params.subscribe((param) => this.getDetail(param['id']));
+  private getVideoInit(): void {
+    this.subscription1$ = this.route.params.subscribe((param) => this.getVideo(param['id']));
     this.subscriptions.push(this.subscription1$);
   }
 
-  private getDetail(id: string): void {
-    this.subscription2$ = this.apiService
-      .getVideosById(id)
-      .subscribe((data) => {
-        [this.item] = data.items;
-      });
-    this.subscriptions.push(this.subscription2$);
+  private getVideo(id: string): void {
+    this.item$ = this.store.select(YoutubeSelects.selectSearchVideo(id));
   }
 
   private getColor() {
-    this.subscription3$ = this.shareColorService.getColor().subscribe((color) => {
+    this.subscription2$ = this.shareColorService.getColor().subscribe((color) => {
       this.color = color;
     });
-    this.subscriptions.push(this.subscription3$);
+    this.subscriptions.push(this.subscription2$);
   }
 
   ngOnDestroy(): void {

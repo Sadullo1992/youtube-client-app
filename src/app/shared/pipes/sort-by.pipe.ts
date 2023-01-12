@@ -13,18 +13,18 @@ export class SortByPipe implements PipeTransform {
     if (sortStatusData.type === 'date') {
       if (sortStatusData.value === 'increasing') {
         // eslint-disable-next-line max-len
-        return searchItems.sort((a: VideoItem, b: VideoItem) => this.sortDate(a.snippet.publishedAt, b.snippet.publishedAt));
+        return searchItems.slice().sort((a: VideoItem, b: VideoItem) => this.sortDate(a.snippet.publishedAt, b.snippet.publishedAt));
       }
       // eslint-disable-next-line max-len
-      return searchItems.sort((a: VideoItem, b: VideoItem) => this.sortDate(b.snippet.publishedAt, a.snippet.publishedAt));
+      return searchItems.slice().sort((a: VideoItem, b: VideoItem) => this.sortDate(b.snippet.publishedAt, a.snippet.publishedAt));
     }
     if (sortStatusData.type === 'view') {
       if (sortStatusData.value === 'increasing') {
         // eslint-disable-next-line max-len
-        return searchItems.sort((a: VideoItem, b: VideoItem) => this.sortView(a.statistics.viewCount, b.statistics.viewCount));
+        return searchItems.slice().sort((a: VideoItem, b: VideoItem) => this.sortView(a.statistics.viewCount, b.statistics.viewCount));
       }
       // eslint-disable-next-line max-len
-      return searchItems.sort((a: VideoItem, b: VideoItem) => this.sortView(b.statistics.viewCount, a.statistics.viewCount));
+      return searchItems.slice().sort((a: VideoItem, b: VideoItem) => this.sortView(b.statistics.viewCount, a.statistics.viewCount));
     }
     return searchItems.filter((item) => this.filterByTitle(item, sortStatusData.value));
   }

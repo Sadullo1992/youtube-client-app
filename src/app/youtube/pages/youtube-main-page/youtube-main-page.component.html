@@ -1,7 +1,15 @@
-<app-sort-block
-  *ngIf="isShowSortBlock"
-  (sort)="onSort($event)"
-></app-sort-block>
-<app-search-results
-  [sortTypeData]="sortTypeData"
-></app-search-results>
+<section>
+  <ng-container *ngIf="(status$ | async) as status">
+    <app-spinner *ngIf="status === 'loading'"></app-spinner>
+  </ng-container>
+  <app-sort-block
+    *ngIf="isShowSortBlock"
+    (sort)="onSort($event)"
+  ></app-sort-block>
+  <ng-container *ngIf="(searchVideos$ | async) as searchVideos">
+    <app-search-results
+      [searchVideos]="searchVideos"
+      [sortTypeData]="sortTypeData"
+    ></app-search-results>
+  </ng-container>
+</section>
