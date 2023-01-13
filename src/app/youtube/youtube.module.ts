@@ -24,6 +24,9 @@ import { AdminComponent } from './components/admin/admin.component';
 
 import { youtubeReducer } from '../redux/reducers/youtube.reducers';
 import { YoutubeEffects } from '../redux/effects/youtube.effects';
+import { CustomVideosComponent } from './components/custom-videos/custom-videos.component';
+import { CustomVideoItemComponent } from './components/custom-videos/custom-video-item/custom-video-item.component';
+import { CustomVideoPageComponent } from './pages/custom-video-page/custom-video-page.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +38,9 @@ import { YoutubeEffects } from '../redux/effects/youtube.effects';
     SortBlockComponent,
     AdminPageComponent,
     AdminComponent,
+    CustomVideosComponent,
+    CustomVideoItemComponent,
+    CustomVideoPageComponent,
   ],
   imports: [
     CommonModule,

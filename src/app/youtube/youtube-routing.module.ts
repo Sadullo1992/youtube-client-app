@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AdminPageComponent } from './pages/admin-page/admin-page.component';
+import { CustomVideoPageComponent } from './pages/custom-video-page/custom-video-page.component';
 import { YoutubeInfoCardPageComponent } from './pages/youtube-info-card-page/youtube-info-card-page.component';
 import { YoutubeMainPageComponent } from './pages/youtube-main-page/youtube-main-page.component';
 
@@ -17,6 +18,10 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminPageComponent,
+  },
+  {
+    path: 'custom-video',
+    component: CustomVideoPageComponent,
   },
 ];
 

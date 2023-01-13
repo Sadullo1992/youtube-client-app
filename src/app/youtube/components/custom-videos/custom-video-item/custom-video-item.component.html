@@ -1,0 +1,13 @@
+<mat-card class="custom-video__card">
+  <img mat-card-image src="{{ item.imageLink }}" alt="custom video image">
+  <mat-card-header>
+    <mat-card-title>{{ item.title }}</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>{{ item.description }}</p>
+  </mat-card-content>
+  <mat-card-actions>
+    <a href="{{ item.linkVideo }}" target="_blank" mat-button color="primary">Watch video</a>
+    <time>{{ item.date | date : "longDate" }}</time>
+  </mat-card-actions>
+</mat-card>

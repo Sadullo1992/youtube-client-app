@@ -46,6 +46,10 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.router.navigateByUrl('/youtube');
   }
 
+  goToCustomVideos(): void {
+    this.router.navigateByUrl('/custom-video');
+  }
+
   login(): void {
     this.router.navigateByUrl('/auth/login');
   }

@@ -1,0 +1,12 @@
+<section *ngIf="(customVideos$ | async) as customVideos">
+  <ng-container *ngIf="customVideos.length > 0; else noData">
+    <app-custom-videos
+      [customVideos]="customVideos"
+    ></app-custom-videos>
+  </ng-container>
+  <ng-template #noData>
+    <p>It seems, there is no video..., but you can create video card...
+      <button (click)="goToAdmin()" mat-stroked-button color="primary">Create video</button>
+    </p>
+    </ng-template>
+</section>

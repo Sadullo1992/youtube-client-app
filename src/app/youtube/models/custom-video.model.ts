@@ -3,4 +3,5 @@ export interface CustomVideo {
   description: string;
   imageLink: string;
   linkVideo: string;
+  date: string;
 }
