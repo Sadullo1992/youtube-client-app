@@ -20,3 +20,8 @@ export const selectYoutubeError = createSelector(
   selectYoutubeState,
   (state: YoutubeState) => state.error,
 );
+
+export const selectCustomVideos = createSelector(
+  selectYoutubeState,
+  (state: YoutubeState) => state.customVideos,
+);

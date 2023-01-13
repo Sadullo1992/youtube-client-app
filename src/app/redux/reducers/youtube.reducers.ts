@@ -4,6 +4,7 @@ import { YoutubeState } from '../state.models';
 
 export const initialState: YoutubeState = {
   searchVideos: [],
+  customVideos: [],
   query: '',
   error: null,
   status: 'pending',
@@ -27,5 +28,9 @@ export const youtubeReducer = createReducer(
     ...state,
     error,
     status: 'error',
+  })),
+  on(YoutubeActions.addCustomVideo, (state, { customVideo }): YoutubeState => ({
+    ...state,
+    customVideos: [...state.customVideos, customVideo],
   })),
 );

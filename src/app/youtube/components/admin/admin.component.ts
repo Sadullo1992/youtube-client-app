@@ -1,8 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import {
   AbstractControl,
-  FormBuilder, FormGroup, FormGroupDirective, ValidationErrors, ValidatorFn, Validators,
+  FormBuilder,
+  FormGroup,
+  FormGroupDirective,
+  ValidationErrors,
+  ValidatorFn,
+  Validators,
 } from '@angular/forms';
+import { Store } from '@ngrx/store';
+import * as YoutubeActions from '../../../redux/actions/youtube.actions';
 
 @Component({
   selector: 'app-admin',
@@ -13,7 +20,7 @@ export class AdminComponent {
   @ViewChild(FormGroupDirective)
     createForm!: { resetForm: () => void; };
 
-  REG = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
+  CHECK_URL_REG = '(https?://)?([\\da-z.-]+)\\.([a-z.]{2,6})[/\\w .-]*/?';
 
   createCardForm: FormGroup = this.fb.group({
     title: [
@@ -25,12 +32,15 @@ export class AdminComponent {
       ],
     ],
     description: ['', [Validators.maxLength(255)]],
-    imageLink: ['', [Validators.required, Validators.pattern(this.REG)]],
-    linkVideo: ['', [Validators.required, Validators.pattern(this.REG)]],
+    imageLink: ['', [Validators.required, Validators.pattern(this.CHECK_URL_REG)]],
+    linkVideo: ['', [Validators.required, Validators.pattern(this.CHECK_URL_REG)]],
     date: ['', [Validators.required, this.checkFutureDate()]],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    private store: Store,
+  ) {}
 
   get title() {
     return this.createCardForm.controls['title'];
@@ -53,7 +63,7 @@ export class AdminComponent {
   }
 
   createCard(): void {
-    // console.log(this.createCardForm.value);
+    this.store.dispatch(YoutubeActions.addCustomVideo({ customVideo: this.createCardForm.value }));
     this.createForm.resetForm();
   }
 
