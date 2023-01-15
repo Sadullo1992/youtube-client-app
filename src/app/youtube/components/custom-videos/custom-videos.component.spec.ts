@@ -8,9 +8,9 @@ describe('CustomVideosComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CustomVideosComponent ]
+      declarations: [CustomVideosComponent],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(CustomVideosComponent);
     component = fixture.componentInstance;
