@@ -13,4 +13,12 @@ describe('ShareColorService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('#setColor set color and #getColor should return value from observable', (done) => {
+    service.setColor('red');
+    service.getColor().subscribe((color) => {
+      expect(color).toEqual('red');
+      done();
+    });
+  });
 });

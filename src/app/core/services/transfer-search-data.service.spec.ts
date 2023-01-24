@@ -13,4 +13,12 @@ describe('TransferSearchDataService', () => {
   it('should be created', () => {
     expect(service).toBeTruthy();
   });
+
+  it('should transfer query value', () => {
+    const query = 'angular unit test';
+    service.shareData(query);
+    service.getData().subscribe((data) => {
+      expect(query).toEqual(data);
+    });
+  });
 });
